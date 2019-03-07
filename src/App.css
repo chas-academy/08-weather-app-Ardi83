@@ -1,33 +1,54 @@
 .App {
-  text-align: center;
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-template-rows:  1fr auto;
+  grid-template-areas: 
+  'nav nav'
+  ' info weather'
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+ul,li {
+  list-style: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+a {
+  color: black
+}
+
+.navi {
+  grid-area: nav
+}
+.weather {
+  grid-area: weather;
+}
+.info {
+  grid-area: info
+}
+
+
+select {
+  cursor: pointer;
+}
+select:hover {
+  background-color: antiquewhite
+}
+
+.forcast__top {
+  align-items: baseline;
+  display: inline;
+}
+.forcast__top__tabs {
+  display: inline-flex;
+}
+
+
+.forcast {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-flow: row;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.forcast__detail {
+  padding: 0 20px;
+  text-align: center;
+  background-color: lightblue;
 }

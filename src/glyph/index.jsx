@@ -1,9 +1,0 @@
-export const windy = <i class="fab fa-cloudversify" />;
-export const sunRain = <i class="fas fa-cloud-sun-rain" />;
-export const sun = <i class="fas fa-cloud-sun" />;
-export const rain = <i class="fas fa-cloud-showers-heavy" />;
-export const cloudRain = <i class="fas fa-cloud-rain" />;
-export const cloudMoonRain = <i class="fas fa-cloud-moon-rain" />;
-export const cloudMoon = <i class="fas fa-cloud-moon" />;
-export const cloudMeatball = <i class="fas fa-cloud-meatball" />;
-export const snow = <i class="far fa-snowflake" />;

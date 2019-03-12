@@ -1,4 +1,8 @@
-.App {
+.app {
+  text-align: center;
+}
+
+.home {
   display: grid;
   grid-template-columns: 30% 70%;
   grid-template-rows:  1fr auto;
@@ -23,7 +27,7 @@ a {
 }
 .info {
   grid-area: info
-}
+} 
 
 
 select {

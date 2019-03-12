@@ -1,10 +1,10 @@
 import React, { Component } from "react";
+
 import axios from "axios";
 
 const Context = React.createContext();
 // Current wwather
 const url = "https://api.openweathermap.org/data/2.5/";
-const apiKey = "3980c0a1fda510edd0f8d75df25673f4";
 let city = "uppsala";
 
 export class Provider extends Component {
@@ -41,24 +41,20 @@ export class Provider extends Component {
       HourlyTemp: [],
       cifa: true,
       map:
-        "https://image.maps.api.here.com/mia/1.6/mapview/?nodot=1&f=0&nocrop=1&nocp=1&w=481&h=481&ml=eng&c=59.9603996277%2C17.7770004272&z=8&app_id=c8OyIJLoy95INu6VmOYD&token=-2vyCQIFMO9cLgHOUEFOQA",
-
-      week: [
-        { date: "09-march", temp: 12 },
-        { date: "09-march", temp: 12 },
-        { date: "09-march", temp: 12 },
-        { date: "09-march", temp: 12 },
-        { date: "09-march", temp: 12 }
-      ]
+        "https://image.maps.api.here.com/mia/1.6/mapview/?nodot=1&f=0&nocrop=1&nocp=1&w=481&h=481&ml=eng&c=59.9603996277%2C17.7770004272&z=8&app_id=c8OyIJLoy95INu6VmOYD&token=-2vyCQIFMO9cLgHOUEFOQA"
     };
   }
 
   async componentDidMount() {
     const res = await axios.get(
-      `${url}weather?q=${city}&units=metric&APPID=${apiKey}`
+      `${url}weather?q=${city}&units=metric&APPID=${
+        process.env.REACT_APP_API_KEY
+      }`
     );
     const response = await axios.get(
-      `${url}forecast?q=${city}&units=metric&APPID=${apiKey}`
+      `${url}forecast?q=${city}&units=metric&APPID=${
+        process.env.REACT_APP_API_KEY
+      }`
     );
     this.setState({
       HourlyTemp: response.data.list

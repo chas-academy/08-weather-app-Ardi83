@@ -5,7 +5,7 @@ import "./App.css";
 const Header = props => {
   const { branding } = props;
   return (
-    <div className="navi navbar navbar-expand-sm navbar-dark mb-3 bg-danger py-1">
+    <div className="navi navbar navbar-expand-sm navbar-dark mb-3 bg-info py-1">
       <div className="container">
         <a className="nav navbar-brand" href="#">
           {branding}

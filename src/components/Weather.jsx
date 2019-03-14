@@ -3,10 +3,31 @@ import { Consumer } from "./Context";
 import "../App.css";
 
 class Weather extends Component {
+  state = {
+    name: ""
+  };
+  onChange = e => {
+    this.setState({
+      name:
+        e.target.value
+          .toLowerCase()
+          .charAt(0)
+          .toUpperCase() + e.target.value.slice(1)
+    });
+  };
+
+  onSubmit = (dispatch, e) => {
+    e.preventDefault();
+    dispatch({ type: "SEARCH_CITY", payload: this.state.name });
+    this.setState({ name: "" });
+  };
+
   render() {
+    const { name } = this.state;
     return (
       <Consumer>
         {value => {
+          const { dispatch } = value;
           let sym = [];
           let count = -1;
           return (
@@ -17,8 +38,14 @@ class Weather extends Component {
                     className="form-control-sm forcast__top__input"
                     placeholder="Enter location name..."
                     type="text"
+                    value={name}
+                    onChange={this.onChange}
                   />
-                  <button type="button" className="btn btn-dark btn-sm">
+                  <button
+                    type="button"
+                    className="btn btn-dark btn-sm"
+                    onClick={this.onSubmit.bind(this, dispatch)}
+                  >
                     <i className="fas fa-arrow-right" />
                   </button>
                 </div>

@@ -4,6 +4,15 @@ import Weather from "./Weather";
 import "../App.css";
 
 class Info extends Component {
+  state = {
+    value: 0
+  };
+  onSetTemp = (temp, e) => {
+    e.preventDefault();
+    e.target.value === "f"
+      ? this.setState({ value: Math.round((temp * 9.5 + 32) * 100) / 100 })
+      : this.setState({ value: Math.round(temp * 100) / 100 });
+  };
   render() {
     return (
       <Consumer>
@@ -21,17 +30,16 @@ class Info extends Component {
                   <div className="mr-1">
                     <img src={value.iconSrc} />
                   </div>
+
                   <div className="mr-1">
-                    {value.cifa ? (
-                      <h2>{temp}&#8451;</h2>
-                    ) : (
-                      <h2>{(temp * 9) / 5 + 32}&#8457;</h2>
-                    )}
+                    <h2>{this.state.value === 0 ? temp : this.state.value}</h2>
                   </div>
-                  <select className="custom-select col-md-2" id="cifa">
-                    <option defaultValue>&#8451;/&#8457;</option>
-                    <option value="celi">&#8451;</option>
-                    <option value="far">&#8457;</option>
+                  <select
+                    className="custom-select col-md-3 mx-2"
+                    onChange={this.onSetTemp.bind(this, temp)}
+                  >
+                    <option value="c">&#8451;</option>
+                    <option value="f">&#8457;</option>
                   </select>
                 </div>
                 <div className="mb-2">{new Date().toUTCString()}</div>
@@ -86,7 +94,6 @@ class Info extends Component {
                   </tbody>
                 </table>
               </div>
-
               <Weather />
             </div>
           );

@@ -1,5 +1,7 @@
-.App,html {
-  background-color: #cccfcc
+.App {
+  height: 100vw;
+    width: 100%;
+  background: linear-gradient(#171e20d5,#161a1da6);
 }
 
 .home {
@@ -11,6 +13,7 @@
   ' info weather'
 }
 
+
 ul,li {
   list-style: none;
 }
@@ -20,15 +23,24 @@ a {
 }
 
 .navi {
-  grid-area: nav
+  grid-area: nav;
 }
 .weather {
   grid-area: weather;
 }
 .info {
-  grid-area: info
+  grid-area: info;
+  margin-left: 50px;
 } 
-
+.info__top {
+  color: yellow
+}
+.info__top > div,.info__top > h4 {
+    padding: 5px;
+    background-color: hsla(120, 71%, 3%, 0.521); 
+    width: 15rem;
+    border-radius: 5px
+}
 
 select {
   cursor: pointer;
@@ -55,4 +67,28 @@ select:hover {
   padding: 0 20px;
   text-align: center;
   background-color: lightblue;
+}
+.avTemp > div,.avTemp > p {
+  width: 6rem;
+  background-color: lightblue;
+}
+
+@media screen and (max-width: 1200px) {
+  .weather {
+    grid-area: weather;
+    margin-left : 20px ;
+  }
+  .info {
+    margin-left : 20px ;
+    grid-area: info;
+  } 
+  .home {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows:  1fr auto auto;
+    grid-template-areas: 
+    'nav'
+    'weather'
+    'info'
+  }
 }

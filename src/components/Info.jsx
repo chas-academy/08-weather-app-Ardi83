@@ -4,15 +4,23 @@ import Weather from "./Weather";
 import "../App.css";
 
 class Info extends Component {
+  // state = {
+  //   value: 0
+  // };
+  // onSetTemp = (temp, e) => {
+  //   e.preventDefault();
+  //   e.target.value === "f"
+  //     ? this.setState({ value: Math.round((temp * 9.5 + 32) * 100) / 100 })
+  //     : this.setState({ value: Math.round(temp * 100) / 100 });
+  // };
   state = {
-    value: 0
+    f: false
+  }
+  
+  onSetTemp = () => {
+    this.setState({ f: !this.state.f });
   };
-  onSetTemp = (temp, e) => {
-    e.preventDefault();
-    e.target.value === "f"
-      ? this.setState({ value: Math.round((temp * 9.5 + 32) * 100) / 100 })
-      : this.setState({ value: Math.round(temp * 100) / 100 });
-  };
+
   render() {
     return (
       <Consumer>
@@ -21,28 +29,31 @@ class Info extends Component {
           const { country, sunrise, sunset } = value.sys;
           const { speed, deg } = value.wind;
           const { description, main } = value.weather;
+         
           return (
             <div className="home">
-              <div className="info ml-5">
-                <h4>Country : {country}</h4>
-                <h4>City : {value.name}</h4>
-                <div style={{ display: "flex", textDecoration: "none" }}>
+              <div className="info">
+                <div className="info__top">
+                  <h4>Country : {country}</h4>
+                  <h4>City : {value.name}</h4>
+                  <div style={{ display: "flex", textDecoration: "none" }}>
                   <div className="mr-1">
-                    <img src={value.iconSrc} />
-                  </div>
-
+                  <img src={value.iconSrc} />
+                </div>
                   <div className="mr-1">
-                    <h2>{this.state.value === 0 ? temp : this.state.value}</h2>
+                    {(temp && !this.state.f) ? <h2>{Math.round(temp * 100)/100}</h2> : null}
+                    {(temp && this.state.f) ? <h2>{Math.round((temp * 9.5 + 32)*100)/100}</h2> : null}
                   </div>
                   <select
                     className="custom-select col-md-3 mx-2"
-                    onChange={this.onSetTemp.bind(this, temp)}
+                    onChange={this.onSetTemp}
                   >
-                    <option value="c">&#8451;</option>
-                    <option value="f">&#8457;</option>
+                    <option>&#8451;</option>
+                    <option>&#8457;</option>
                   </select>
                 </div>
                 <div className="mb-2">{new Date().toUTCString()}</div>
+              </div>
                 <table>
                   <tbody className="table table-info">
                     <tr>

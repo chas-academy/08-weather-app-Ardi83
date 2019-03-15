@@ -4,7 +4,8 @@ import "../App.css";
 
 class Weather extends Component {
   state = {
-    name: ""
+    name: "",
+    coordss: { lat: "", lon: "" }
   };
   onChange = e => {
     this.setState({
@@ -22,6 +23,29 @@ class Weather extends Component {
     this.setState({ name: "" });
   };
 
+  findLocation = (dispatch, e) => {
+    e.preventDefault();
+    let options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
+    const success = pos => {
+      let crd = pos.coords;
+      this.setState({
+        coordss: {
+          lat: crd.latitude,
+          lon: crd.longitude
+        }
+      });
+      dispatch({ type: "FIND_LOCATION", payload: this.state.coordss });
+    };
+    const error = err => {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+    };
+    navigator.geolocation.getCurrentPosition(success, error, options);
+  };
+
   render() {
     const { name } = this.state;
     return (
@@ -30,8 +54,9 @@ class Weather extends Component {
           const { dispatch } = value;
           let sym = [];
           let count = -1;
+          let totalDegree = 0;
           return (
-            <div className="weather mx-5">
+            <div className="weather">
               <div className="forcast__top">
                 <div className="input-group my-3">
                   <input
@@ -49,6 +74,13 @@ class Weather extends Component {
                     <i className="fas fa-arrow-right" />
                   </button>
                 </div>
+                <button
+                  className="btn btn-sm btn-outline-dark"
+                  onClick={this.findLocation.bind(this, dispatch)}
+                >
+                  Current location
+                  <i className="fas fa-map-marked-alt ml-2" />
+                </button>
               </div>
               <hr />
               <img
@@ -65,6 +97,7 @@ class Weather extends Component {
                     }.png`
                   );
                   count++;
+                  totalDegree += data.main.temp;
                   return (
                     <div key={data.dt} className="forcast__detail p-3">
                       <p>{new Date(data.dt * 1000).toLocaleTimeString()}</p>
@@ -79,6 +112,17 @@ class Weather extends Component {
                   );
                 })}
               </div>
+              {(totalDegree === 0)
+              ?
+              <span></span> 
+              :
+              <div className="list list-group avTemp">
+                <p className="list-group-item px-2">Av. Temp</p>
+                <div className="list-group-item px-2">
+                  {Math.round((totalDegree/5) * 100) / 100} &#8451;
+                </div>
+              </div>
+            }
             </div>
           );
         }}

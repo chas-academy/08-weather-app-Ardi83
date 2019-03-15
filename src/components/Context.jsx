@@ -20,11 +20,14 @@ const reducer = (state, action) => {
 };
 
 const Context = React.createContext();
-// Url
+// Url - Open weaher
 const url = "https://api.openweathermap.org/data/2.5/";
+// Radar smhi
+const radarUrl = "https://opendata-download-radar.smhi.se/api/version/latest/area/sweden/product/comp";
+
 export class Provider extends Component {
   state = {
-    // reducer payload
+    // reducer's payload
     city: "",
     coords: {},
     // state imported from api
@@ -58,20 +61,29 @@ export class Provider extends Component {
     });
   }
 
+  async componentDidMount() {
+    let result = await axios.get(radarUrl);
+    this.setState({map: result.data.lastFiles[0].formats[0].link})
+  }
+
   async componentDidUpdate(prevProps, prevState) {
     // If city's name change
     if (prevState.city !== this.state.city) {
-      const res = await axios.get(
-        `${url}weather?q=${this.state.city}&units=metric&APPID=${
-          process.env.REACT_APP_API_KEY
-        }`
-      );
-      const response = await axios.get(
-        `${url}forecast?q=${this.state.city}&units=metric&APPID=${
-          process.env.REACT_APP_API_KEY
-        }`
-      );
-      this.callSate(response, res);
+      try {
+        const res = await axios.get(
+          `${url}weather?q=${this.state.city}&units=metric&APPID=${
+            process.env.REACT_APP_API_KEY
+          }`
+        );
+        const response = await axios.get(
+          `${url}forecast?q=${this.state.city}&units=metric&APPID=${
+            process.env.REACT_APP_API_KEY
+          }`
+        );
+        this.callSate(response, res);
+      } catch {
+        alert(`${this.state.city} NOT found, Please try again`)
+      }
     }
     // If current coordinator is change (clicked)
     if (prevState.coords !== this.state.coords) {

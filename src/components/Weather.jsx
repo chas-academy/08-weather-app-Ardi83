@@ -83,11 +83,6 @@ class Weather extends Component {
                 </button>
               </div>
               <hr />
-              <img
-                src={value.map}
-                alt="Card image cap"
-                className="card-image"
-              />
               <hr />
               <div className="forcast mb-4">
                 {value.HourlyTemp.slice(0, 5).map(data => {
@@ -95,11 +90,11 @@ class Weather extends Component {
                     `https://openweathermap.org/img/w/${
                       data.weather[0].icon
                     }.png`
-                  );
-                  count++;
-                  totalDegree += data.main.temp;
-                  return (
-                    <div key={data.dt} className="forcast__detail p-3">
+                    );
+                    count++;
+                    totalDegree += data.main.temp;
+                    return (
+                      <div key={data.dt} className="forcast__detail p-3">
                       <p>{new Date(data.dt * 1000).toLocaleTimeString()}</p>
                       <div className="list-group">
                         <span>
@@ -116,13 +111,21 @@ class Weather extends Component {
               ?
               <span></span> 
               :
-              <div className="list list-group avTemp">
-                <p className="list-group-item px-2">Av. Temp</p>
-                <div className="list-group-item px-2">
-                  {Math.round((totalDegree/5) * 100) / 100} &#8451;
-                </div>
-              </div>
+              <table calssName="table" style={{backgroundColor: 'lightblue'}}>
+                <tr>
+                  <th className="p-2" >Av. Temp</th>
+                  <td className="p-2">{Math.round((totalDegree/5) * 100) / 100} &#8451;</td>
+                </tr>
+              </table>
             }
+          
+            <img
+              src={value.map}
+              alt="Card image cap"
+              className="card-image"
+              style={{backgroundColor: '#020d0285'}}
+            />
+            
             </div>
           );
         }}

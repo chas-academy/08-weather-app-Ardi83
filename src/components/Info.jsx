@@ -4,15 +4,6 @@ import Weather from "./Weather";
 import "../App.css";
 
 class Info extends Component {
-  // state = {
-  //   value: 0
-  // };
-  // onSetTemp = (temp, e) => {
-  //   e.preventDefault();
-  //   e.target.value === "f"
-  //     ? this.setState({ value: Math.round((temp * 9.5 + 32) * 100) / 100 })
-  //     : this.setState({ value: Math.round(temp * 100) / 100 });
-  // };
   state = {
     f: false
   }

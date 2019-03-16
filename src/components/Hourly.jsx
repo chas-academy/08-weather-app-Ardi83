@@ -10,7 +10,9 @@ class Hourly extends Component {
           let symbolArray = [];
           let count = -1;
           return (
-            <div style={{overflow: 'auto', height: '800px', width: '582px'}} className="container my-0">
+            <div 
+            style={{overflow: 'auto', height: '800px', width: '582px'}}
+            className="container dailyProgons my-0">
               {value.HourlyTemp.map(day => {
                 symbolArray.push(
                   `https://openweathermap.org/img/w/${day.weather[0].icon}.png`

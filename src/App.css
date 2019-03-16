@@ -63,7 +63,7 @@ select:hover {
 }
 
 .forcast__detail {
-  padding: 0 20px;
+  padding: 12px;
   text-align: center;
   color: rgb(230, 255, 1);
   font-weight: 400
@@ -101,11 +101,21 @@ select:hover {
     'weather'
     'info'
   }
+  .forcast__detail {
+    padding: 5px !important
+  }
   .btn-currentLocation {
   color: aliceblue !important
   }
   .smhiMap {
     width: 340px !important;
 
+  }
+  .weekPrognos {
+    overflow: auto;
+    width: 340px;
+  }
+  .dailyProgons {
+    width: 340px !important
   }
 }

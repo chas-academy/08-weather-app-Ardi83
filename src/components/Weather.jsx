@@ -106,7 +106,7 @@ class Weather extends Component {
                     return (
                       <div 
                       key={data.dt} 
-                      className="forcast__detail p-1"
+                      className="forcast__detail"
                       style={{backgroundImage: `url(${backColorrr})`}}
                       >
                       <p>{new Date(data.dt * 1000).toLocaleTimeString()}</p>

@@ -111,8 +111,8 @@ select:hover {
 
   }
   .weekPrognos {
-    overflow: auto;
-    width: 340px;
+    overflow: auto !important;
+    width: 340px !important;
   }
   .dailyProgons {
     width: 340px !important;

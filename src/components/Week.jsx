@@ -38,9 +38,11 @@ class Week extends Component {
                     break;
                   case 6:
                     day1 = "Sat";
+                    break;
+                    default: new Date(day.dt * 1000).getUTCDay();
                 }
                 let kl = day.dt_txt.substring(10, 13);
-                if (kl == 12) {
+                if (kl === 12) {
                   return (
                     <table
                       style={{ textAlign: "center" }}
@@ -54,7 +56,7 @@ class Week extends Component {
                             {new Date(day.dt * 1000).toLocaleDateString()}
                           </td>
                           <td>
-                            <img src={symbolArray[count]} />
+                            <img alt="weather-symbol" src={symbolArray[count]} />
                           </td>
                           <td>{day.main.temp} &#8451;</td>
                           <td>{day.main.temp_min} &#8451;</td>

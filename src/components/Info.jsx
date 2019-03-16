@@ -29,7 +29,7 @@ class Info extends Component {
                   <h4>City : {value.name}</h4>
                   <div style={{ display: "flex", textDecoration: "none" }}>
                   <div className="mr-1">
-                  <img src={value.iconSrc} />
+                  <img alt="weather-symbol" style={{backgroundColor:'gray'}} src={value.iconSrc} />
                 </div>
                   <div className="mr-1">
                     {(temp && !this.state.f) ? <h2>{Math.round(temp * 100)/100}</h2> : null}

@@ -98,7 +98,7 @@ class Weather extends Component {
                       <p>{new Date(data.dt * 1000).toLocaleTimeString()}</p>
                       <div className="list-group">
                         <span>
-                          <img src={sym[count]} />
+                          <img alt="weather symbol" src={sym[count]} />
                         </span>
                         <span>{data.main.temp}&#8451;</span>
                         <span>{data.wind.speed} m/s</span>
@@ -111,20 +111,23 @@ class Weather extends Component {
               ?
               <span></span> 
               :
-              <table calssName="table" style={{backgroundColor: 'lightblue'}}>
+              <table style={{backgroundColor: 'lightblue'}}>
+              <tbody>
                 <tr>
                   <th className="p-2" >Av. Temp</th>
                   <td className="p-2">{Math.round((totalDegree/5) * 100) / 100} &#8451;</td>
                 </tr>
+              </tbody>
               </table>
             }
-          
+          <div className="my-3" style={{overflow: 'auto', height: '300px', width: '490px'}}>
             <img
               src={value.map}
-              alt="Card image cap"
+              alt="smhi-sweden-radar"
               className="card-image"
               style={{backgroundColor: '#020d0285'}}
             />
+          </div>
             
             </div>
           );

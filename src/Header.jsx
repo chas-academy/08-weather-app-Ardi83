@@ -7,9 +7,9 @@ const Header = props => {
   return (
     <div className="navi navbar navbar-expand-sm navbar-dark mb-3 bg-info py-1">
       <div className="container">
-        <a className="nav navbar-brand" href="#">
+      <Link to="/" className="nav navbar-brand">
           {branding}
-        </a>
+          </Link>
         <div>
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">

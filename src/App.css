@@ -1,7 +1,6 @@
 .App {
   height: 100vw;
     width: 100%;
-  background: linear-gradient(#171e20d5,#161a1da6);
 }
 
 .home {
@@ -71,6 +70,9 @@ select:hover {
 
 
 @media screen and (max-width: 1200px) {
+  .App,body,html {
+    background: #c9cfc9 !important
+  }
   .weather {
     grid-area: weather;
     margin-left : 20px ;

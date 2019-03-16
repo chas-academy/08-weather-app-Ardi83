@@ -42,7 +42,7 @@ class Week extends Component {
                     default: new Date(day.dt * 1000).getUTCDay();
                 }
                 let kl = day.dt_txt.substring(10, 13);
-                if (kl === 12) {
+                if (kl == 12) {
                   return (
                     <table
                       style={{ textAlign: "center" }}

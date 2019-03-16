@@ -79,7 +79,6 @@ select:hover {
   visibility: visible;
 }
 
-
 @media screen and (max-width: 1200px) {
   .App,body,html {
     background: #2a2b2a !important
@@ -116,6 +115,6 @@ select:hover {
     width: 340px;
   }
   .dailyProgons {
-    width: 340px !important
+    width: 340px !important;
   }
 }

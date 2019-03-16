@@ -11,7 +11,7 @@ class Week extends Component {
           let count = -1;
           let day1;
           return (
-            <div className="container my-0 weekPrognos">
+            <div className="container my-0 weekPrognos" style={{width:'595px'}}>
               {value.HourlyTemp.map(day => {
                 symbolArray.push(
                   `https://openweathermap.org/img/w/${day.weather[0].icon}.png`
@@ -45,8 +45,8 @@ class Week extends Component {
                 if (kl === '12') {
                   return (
                     <table
-                      style={{ textAlign: "center", width: '600px' }}
-                      className="table col-md-7 bg-info mb-0"
+                      style={{ textAlign: "center", width: '610px' }}
+                      className="table bg-info mb-0"
                       key={day.dt}
                     >
                       <tbody>

@@ -11,7 +11,7 @@ class Hourly extends Component {
           let count = -1;
           return (
             <div 
-            style={{overflow: 'auto', height: '800px', width: '582px'}}
+            style={{overflow: 'auto', height: '800px', width: '595px'}}
             className="container dailyProgons my-0">
               {value.HourlyTemp.map(day => {
                 symbolArray.push(
@@ -20,7 +20,7 @@ class Hourly extends Component {
                 count++;
                 return (
                   <table
-                    style={{ textAlign: "center", width: '550px' }}
+                    style={{ textAlign: "center", width: '563px' }}
                     className="table  bg-info mb-0"
                     key={day.dt}
                   >

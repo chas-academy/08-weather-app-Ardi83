@@ -42,7 +42,7 @@ componentDidMount(){
               <Route exact path="/" component={Info} />
               <Route exact path="/daily" component={Week} />
               <Route exact path="/hourly" component={Hourly} />
-              <Route component={NotFound} />
+              <Route path="*" component={NotFound} />
             </Switch>
           </div>
         </Router>

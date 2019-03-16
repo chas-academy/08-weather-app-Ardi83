@@ -55,6 +55,11 @@ class Weather extends Component {
           let sym = [];
           let count = -1;
           let totalDegree = 0;
+          let firstImage = require('../assets/01.png');
+          let secondImage = require('../assets/02.png');
+          let thirdImage = require('../assets/03.png');
+          let fourthImage = require('../assets/04.png');
+          const backColor = [firstImage, secondImage, thirdImage, fourthImage];
           return (
             <div className="weather">
               <div className="forcast__top">
@@ -75,26 +80,35 @@ class Weather extends Component {
                   </button>
                 </div>
                 <button
-                  className="btn btn-sm btn-outline-dark"
+                  className="btn btn-sm btn-outline-dark btn-currentLocation"
                   onClick={this.findLocation.bind(this, dispatch)}
                 >
                   Current location
                   <i className="fas fa-map-marked-alt ml-2" />
                 </button>
+                <div className="locationComment">
+                  <span className="bg-light p-1" style={{borderRadius: '5px'}}>
+                    <i className="fas fa-map-marker-alt"></i> Please Enable your Location on setting first
+                  </span>
+                </div>
               </div>
               <hr />
-              <hr />
               <div className="forcast mb-4">
-                {value.HourlyTemp.slice(0, 5).map(data => {
+                {value.HourlyTemp.slice(0, 4).map(data => {
                   sym.push(
                     `https://openweathermap.org/img/w/${
                       data.weather[0].icon
                     }.png`
                     );
                     count++;
+                    let backColorrr = backColor[count];
                     totalDegree += data.main.temp;
                     return (
-                      <div key={data.dt} className="forcast__detail p-3">
+                      <div 
+                      key={data.dt} 
+                      className="forcast__detail p-1"
+                      style={{backgroundImage: `url(${backColorrr})`}}
+                      >
                       <p>{new Date(data.dt * 1000).toLocaleTimeString()}</p>
                       <div className="list-group">
                         <span>
@@ -120,14 +134,15 @@ class Weather extends Component {
               </tbody>
               </table>
             }
-          <div className="my-3" style={{overflow: 'auto', height: '300px', width: '490px'}}>
-            <img
-              src={value.map}
-              alt="smhi-sweden-radar"
-              className="card-image"
-              style={{backgroundColor: '#020d0285'}}
-            />
-          </div>
+              <div className="smhiMap my-3" 
+              style={{overflow: 'auto', height: '300px', width: '490px'}}>
+                <img
+                  src={value.map}
+                  alt="smhi-sweden-radar"
+                  className="card-image"
+                  style={{backgroundColor: '#020d0285'}}
+                />
+              </div>
             
             </div>
           );

@@ -65,13 +65,24 @@ select:hover {
 .forcast__detail {
   padding: 0 20px;
   text-align: center;
-  background-color: lightblue;
+  color: rgb(230, 255, 1);
+  font-weight: 400
+}
+.locationComment {
+  color:red;
+  opacity: 0;
+    transition: opacity 0.5s linear 0s;
+    visibility: hidden; 
+}
+.btn-currentLocation:hover + .locationComment {
+  opacity: 1;
+  visibility: visible;
 }
 
 
 @media screen and (max-width: 1200px) {
   .App,body,html {
-    background: #c9cfc9 !important
+    background: #2a2b2a !important
   }
   .weather {
     grid-area: weather;
@@ -89,5 +100,12 @@ select:hover {
     'nav'
     'weather'
     'info'
+  }
+  .btn-currentLocation {
+  color: aliceblue !important
+  }
+  .smhiMap {
+    width: 340px !important;
+
   }
 }

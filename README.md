@@ -1,3 +1,11 @@
+Link  =>  https://weather.ardinasiri.me/
+- daily , hourly forecast
+- search by current location / City name
+- SMHI sweden radar
+- Not found route component added
+- change background depend on current time
+
+
 Som användare ska man kunna göra följande:
 
 - [ ]  Kunna se temperatur och andra väderförhållanden för sin nuvarande position

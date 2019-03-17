@@ -15,9 +15,13 @@ class SaveList extends Component {
   saveCity = (name, e) => {
     e.preventDefault();
     if (this.state.cityList.length <= 4) {
-      name
-        ? this.setState({ cityList: this.state.cityList.concat(name) })
-        : alert("Cant Save");
+      if (this.state.cityList.indexOf(name) === -1) {
+        name
+          ? this.setState({ cityList: this.state.cityList.concat(name) })
+          : alert("Cant Save");
+      } else {
+        alert("City is added before!");
+      }
     } else {
       this.setState({ visible: "block" });
     }

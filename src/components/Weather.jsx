@@ -82,13 +82,12 @@ class Weather extends Component {
                   </button>
                 </div>
                 <button
-                  className="btn btn-sm btn-outline-dark btn-currentLocation"
+                  className="btn btn-sm btn-outline-dark btn-currentLocation mb-1"
                   onClick={this.findLocation.bind(this, dispatch)}
                 >
                   Current location
                   <i className="fas fa-map-marked-alt ml-2" />
                 </button>
-                <SaveList />
                 <div className="locationComment">
                   <span
                     className="bg-light p-1"
@@ -98,6 +97,7 @@ class Weather extends Component {
                     Location on setting first
                   </span>
                 </div>
+                <SaveList />
               </div>
               <hr />
               <div className="forcast mb-4">

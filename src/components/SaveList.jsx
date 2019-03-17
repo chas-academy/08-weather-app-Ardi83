@@ -20,7 +20,7 @@ class SaveList extends Component {
           ? this.setState({ cityList: this.state.cityList.concat(name) })
           : alert("Cant Save");
       } else {
-        alert("City is added before!");
+        alert(`${name} is added before!`);
       }
     } else {
       this.setState({ visible: "block" });
@@ -44,19 +44,19 @@ class SaveList extends Component {
           return (
             <div className="mt-2" style={{ width: "150px" }}>
               <button
-                className="btn btn-sm bg-dark text-white mx-1"
+                className="btn btn-sm bg-dark text-white mx-1 mb-1"
                 onClick={this.saveCity.bind(this, name)}
               >
                 Save city name
               </button>
               <ul
                 style={{
-                  width: "120px",
+                  width: "150px",
                   textAlign: "center",
                   borderRadius: "4px",
                   borderBottom: "1px solid black"
                 }}
-                className="bg-light p-0"
+                className="bg-light px-0"
               >
                 {this.state.cityList.map((city, i) => {
                   return (
@@ -65,7 +65,7 @@ class SaveList extends Component {
                       className=""
                       style={{
                         borderBottom: "1px solid black",
-                        padding: 0,
+                        padding: "5px 0",
                         display: "flex",
                         justifyContent: "space-between"
                       }}

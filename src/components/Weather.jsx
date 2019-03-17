@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Consumer } from "./Context";
+import SaveList from "./SaveList";
 import "../App.css";
 
 class Weather extends Component {
@@ -55,10 +56,10 @@ class Weather extends Component {
           let sym = [];
           let count = -1;
           let totalDegree = 0;
-          let firstImage = require('../assets/01.png');
-          let secondImage = require('../assets/02.png');
-          let thirdImage = require('../assets/03.png');
-          let fourthImage = require('../assets/04.png');
+          let firstImage = require("../assets/01.png");
+          let secondImage = require("../assets/02.png");
+          let thirdImage = require("../assets/03.png");
+          let fourthImage = require("../assets/04.png");
           const backColor = [firstImage, secondImage, thirdImage, fourthImage];
           return (
             <div className="weather">
@@ -86,9 +87,14 @@ class Weather extends Component {
                   Current location
                   <i className="fas fa-map-marked-alt ml-2" />
                 </button>
+                <SaveList />
                 <div className="locationComment">
-                  <span className="bg-light p-1" style={{borderRadius: '5px'}}>
-                    <i className="fas fa-map-marker-alt"></i> Please Enable your Location on setting first
+                  <span
+                    className="bg-light p-1"
+                    style={{ borderRadius: "5px" }}
+                  >
+                    <i className="fas fa-map-marker-alt" /> Please Enable your
+                    Location on setting first
                   </span>
                 </div>
               </div>
@@ -99,16 +105,16 @@ class Weather extends Component {
                     `https://openweathermap.org/img/w/${
                       data.weather[0].icon
                     }.png`
-                    );
-                    count++;
-                    let backColorrr = backColor[count];
-                    totalDegree += data.main.temp;
-                    return (
-                      <div 
-                      key={data.dt} 
+                  );
+                  count++;
+                  let backColorrr = backColor[count];
+                  totalDegree += data.main.temp;
+                  return (
+                    <div
+                      key={data.dt}
                       className="forcast__detail"
-                      style={{backgroundImage: `url(${backColorrr})`}}
-                      >
+                      style={{ backgroundImage: `url(${backColorrr})` }}
+                    >
                       <p>{new Date(data.dt * 1000).toLocaleTimeString()}</p>
                       <div className="list-group">
                         <span>
@@ -121,29 +127,31 @@ class Weather extends Component {
                   );
                 })}
               </div>
-              {(totalDegree === 0)
-              ?
-              <span></span> 
-              :
-              <table style={{backgroundColor: 'lightblue'}}>
-              <tbody>
-                <tr>
-                  <th className="p-2" >Av. Temp</th>
-                  <td className="p-2">{Math.round((totalDegree/5) * 100) / 100} &#8451;</td>
-                </tr>
-              </tbody>
-              </table>
-            }
-              <div className="smhiMap my-3" 
-              style={{overflow: 'auto', height: '300px', width: '490px'}}>
+              {totalDegree === 0 ? (
+                <span />
+              ) : (
+                <table style={{ backgroundColor: "lightblue" }}>
+                  <tbody>
+                    <tr>
+                      <th className="p-2">Av. Temp</th>
+                      <td className="p-2">
+                        {Math.round((totalDegree / 5) * 100) / 100} &#8451;
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              )}
+              <div
+                className="smhiMap my-3"
+                style={{ overflow: "auto", height: "300px", width: "490px" }}
+              >
                 <img
                   src={value.map}
                   alt="smhi-sweden-radar"
                   className="card-image"
-                  style={{backgroundColor: '#020d0285'}}
+                  style={{ backgroundColor: "#020d0285" }}
                 />
               </div>
-            
             </div>
           );
         }}

@@ -56,24 +56,36 @@ class SaveList extends Component {
               >
                 {this.state.cityList.map((city, i) => {
                   return (
-                    <li
+                    <ul
                       key={i}
+                      className=""
                       style={{
-                        borderBottom: "1px solid black"
+                        borderBottom: "1px solid black",
+                        padding: 0,
+                        display: "flex",
+                        justifyContent: "space-between"
                       }}
                     >
-                      <i
-                        onClick={this.showWeather.bind(this, dispatch, city)}
-                        className="fas fa-search-location text-success"
-                        style={{ cursor: "pointer" }}
-                      />{" "}
-                      {city}{" "}
-                      <i
-                        className="fas fa-trash-alt text-danger"
-                        style={{ cursor: "pointer" }}
-                        onClick={this.removeCity.bind(this, i, city)}
-                      />
-                    </li>
+                      <li style={{ padding: "0 5px" }}>
+                        <i
+                          onClick={this.showWeather.bind(this, dispatch, city)}
+                          className="fas fa-search-location text-success"
+                          style={{
+                            cursor: "pointer"
+                          }}
+                        />{" "}
+                      </li>
+                      <li>{city} </li>
+                      <li style={{ padding: "0 5px" }}>
+                        <i
+                          className="fas fa-trash-alt text-danger"
+                          style={{
+                            cursor: "pointer"
+                          }}
+                          onClick={this.removeCity.bind(this, i, city)}
+                        />
+                      </li>
+                    </ul>
                   );
                 })}
                 <span

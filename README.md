@@ -3,7 +3,8 @@ Link  =>  https://weather.ardinasiri.me/
 - search by current location / City name
 - SMHI sweden radar
 - Not found route component added
-- change background depend on current time
+- Background will change depend on current time
+- City save list 
 
 
 Som användare ska man kunna göra följande:

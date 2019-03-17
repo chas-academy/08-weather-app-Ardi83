@@ -66,6 +66,7 @@ class Weather extends Component {
               <div className="forcast__top">
                 <div className="input-group my-3">
                   <input
+                    style={{ backgroundColor: "#e1e5e9" }}
                     className="form-control-sm forcast__top__input"
                     placeholder="Enter location name..."
                     type="text"

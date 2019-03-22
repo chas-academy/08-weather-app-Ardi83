@@ -108,19 +108,7 @@ export class Provider extends Component {
     }
 
     // If unit change
-    if (prevState.unit !== this.state.unit) {
-      const res = await axios.get(
-        `${url}weather?lat=${this.state.coords.lat}&lon=${
-          this.state.coords.lon
-        }&units=${this.state.unit}&APPID=${process.env.REACT_APP_API_KEY}`
-      );
-      const response = await axios.get(
-        `${url}forecast?lat=${this.state.coords.lat}&lon=${
-          this.state.coords.lon
-        }&units=${this.state.unit}&APPID=${process.env.REACT_APP_API_KEY}`
-      );
-      this.callSate(response, res);
-    }
+
     if (prevState.unit !== this.state.unit) {
       const res = await axios.get(
         `${url}weather?q=${this.state.name}&units=${this.state.unit}&APPID=${

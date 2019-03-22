@@ -121,7 +121,14 @@ class Weather extends Component {
                         <span>
                           <img alt="weather symbol" src={sym[count]} />
                         </span>
-                        <span>{data.main.temp}&#8451;</span>
+                        <span>
+                          {data.main.temp}{" "}
+                          {this.props.units === "Imperial" ? (
+                            <span>&#8451;</span>
+                          ) : (
+                            <span>&#8457;</span>
+                          )}
+                        </span>
                         <span>{data.wind.speed} m/s</span>
                       </div>
                     </div>
@@ -136,7 +143,12 @@ class Weather extends Component {
                     <tr>
                       <th className="p-2">Av. Temp</th>
                       <td className="p-2">
-                        {Math.round((totalDegree / 5) * 100) / 100} &#8451;
+                        {Math.round((totalDegree / 5) * 100) / 100}{" "}
+                        {this.props.units === "Imperial" ? (
+                          <span>&#8451;</span>
+                        ) : (
+                          <span>&#8457;</span>
+                        )}
                       </td>
                     </tr>
                   </tbody>

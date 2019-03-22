@@ -14,6 +14,11 @@ const reducer = (state, action) => {
         ...state,
         coords: action.payload
       };
+    case "CHANGE_UNIT":
+      return {
+        ...state,
+        unit: action.payload
+      };
     default:
       return state;
   }
@@ -23,7 +28,8 @@ const Context = React.createContext();
 // Url - Open weaher
 const url = "https://api.openweathermap.org/data/2.5/";
 // Radar smhi
-const radarUrl = "https://opendata-download-radar.smhi.se/api/version/latest/area/sweden/product/comp";
+const radarUrl =
+  "https://opendata-download-radar.smhi.se/api/version/latest/area/sweden/product/comp";
 
 export class Provider extends Component {
   state = {
@@ -40,6 +46,7 @@ export class Provider extends Component {
     weather: {},
     HourlyTemp: [],
     map: "",
+    unit: "metric",
 
     dispatch: action => {
       this.setState(state => reducer(state, action));
@@ -63,7 +70,7 @@ export class Provider extends Component {
 
   async componentDidMount() {
     let result = await axios.get(radarUrl);
-    this.setState({map: result.data.lastFiles[0].formats[0].link})
+    this.setState({ map: result.data.lastFiles[0].formats[0].link });
   }
 
   async componentDidUpdate(prevProps, prevState) {
@@ -71,18 +78,18 @@ export class Provider extends Component {
     if (prevState.city !== this.state.city) {
       try {
         const res = await axios.get(
-          `${url}weather?q=${this.state.city}&units=metric&APPID=${
+          `${url}weather?q=${this.state.city}&units=${this.state.unit}&APPID=${
             process.env.REACT_APP_API_KEY
           }`
         );
         const response = await axios.get(
-          `${url}forecast?q=${this.state.city}&units=metric&APPID=${
+          `${url}forecast?q=${this.state.city}&units=${this.state.unit}&APPID=${
             process.env.REACT_APP_API_KEY
           }`
         );
         this.callSate(response, res);
       } catch {
-        alert(`${this.state.city} NOT found, Please try again`)
+        alert(`${this.state.city} NOT found, Please try again`);
       }
     }
     // If current coordinator is change (clicked)
@@ -90,12 +97,40 @@ export class Provider extends Component {
       const res = await axios.get(
         `${url}weather?lat=${this.state.coords.lat}&lon=${
           this.state.coords.lon
-        }&units=metric&APPID=${process.env.REACT_APP_API_KEY}`
+        }&units=${this.state.unit}&APPID=${process.env.REACT_APP_API_KEY}`
       );
       const response = await axios.get(
         `${url}forecast?lat=${this.state.coords.lat}&lon=${
           this.state.coords.lon
-        }&units=metric&APPID=${process.env.REACT_APP_API_KEY}`
+        }&units=${this.state.unit}&APPID=${process.env.REACT_APP_API_KEY}`
+      );
+      this.callSate(response, res);
+    }
+
+    // If unit change
+    if (prevState.unit !== this.state.unit) {
+      const res = await axios.get(
+        `${url}weather?lat=${this.state.coords.lat}&lon=${
+          this.state.coords.lon
+        }&units=${this.state.unit}&APPID=${process.env.REACT_APP_API_KEY}`
+      );
+      const response = await axios.get(
+        `${url}forecast?lat=${this.state.coords.lat}&lon=${
+          this.state.coords.lon
+        }&units=${this.state.unit}&APPID=${process.env.REACT_APP_API_KEY}`
+      );
+      this.callSate(response, res);
+    }
+    if (prevState.unit !== this.state.unit) {
+      const res = await axios.get(
+        `${url}weather?q=${this.state.name}&units=${this.state.unit}&APPID=${
+          process.env.REACT_APP_API_KEY
+        }`
+      );
+      const response = await axios.get(
+        `${url}forecast?q=${this.state.name}&units=${this.state.unit}&APPID=${
+          process.env.REACT_APP_API_KEY
+        }`
       );
       this.callSate(response, res);
     }

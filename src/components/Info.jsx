@@ -5,11 +5,18 @@ import "../App.css";
 
 class Info extends Component {
   state = {
-    f: false
+    units: "Imperial"
   };
 
-  onSetTemp = () => {
-    this.setState({ f: !this.state.f });
+  onSetTemp = (dispatch, e) => {
+    e.preventDefault();
+    if (e.target.value === "F") {
+      this.setState({ units: "Metric" });
+    }
+    if (e.target.value === "C") {
+      this.setState({ units: "Imperial" });
+    }
+    dispatch({ type: "CHANGE_UNIT", payload: this.state.units });
   };
 
   render() {
@@ -20,6 +27,7 @@ class Info extends Component {
           const { country, sunrise, sunset } = value.sys;
           const { speed, deg } = value.wind;
           const { description, main } = value.weather;
+          const { dispatch } = value;
 
           return (
             <div className="home">
@@ -38,20 +46,14 @@ class Info extends Component {
                           src={value.iconSrc}
                         />
                       </div>
-                      <div className="mr-1">
-                        {temp && !this.state.f ? (
-                          <h2>{Math.round(temp * 100) / 100}</h2>
-                        ) : null}
-                        {temp && this.state.f ? (
-                          <h2>{Math.round((temp * 9.5 + 32) * 100) / 100}</h2>
-                        ) : null}
-                      </div>
+                      <div className="mr-1" />
+                      <h2>{temp}</h2>
                       <select
                         className="custom-select col-md-3 mx-2"
-                        onChange={this.onSetTemp}
+                        onChange={this.onSetTemp.bind(this, dispatch)}
                       >
-                        <option>&#8451;</option>
-                        <option>&#8457;</option>
+                        <option>C</option>
+                        <option>F</option>
                       </select>
                     </div>
                     <div className="mb-2">{new Date().toUTCString()}</div>
@@ -61,7 +63,13 @@ class Info extends Component {
                       <tr>
                         <th scope="row">Wind</th>
                         <td>
-                          {speed} m/s, {deg}&deg;
+                          {speed}{" "}
+                          {value.unit === "metric" ? (
+                            <span>m/s</span>
+                          ) : (
+                            <span>mil/h</span>
+                          )}{" "}
+                          , {deg}&deg;
                         </td>
                       </tr>
                       <tr>
@@ -82,11 +90,25 @@ class Info extends Component {
                       </tr>
                       <tr>
                         <th scope="row">Min Temp</th>
-                        <td>{temp_min} &#8451;</td>
+                        <td>
+                          {temp_min}{" "}
+                          {this.state.units === "Imperial" ? (
+                            <span>&#8451;</span>
+                          ) : (
+                            <span>&#8457;</span>
+                          )}
+                        </td>
                       </tr>
                       <tr>
                         <th scope="row">Max Temp</th>
-                        <td>{temp_max} &#8451;</td>
+                        <td>
+                          {temp_max}{" "}
+                          {this.state.units === "Imperial" ? (
+                            <span>&#8451;</span>
+                          ) : (
+                            <span>&#8457;</span>
+                          )}
+                        </td>
                       </tr>
                       <tr>
                         <th scope="row">main</th>
@@ -108,7 +130,7 @@ class Info extends Component {
                   </table>
                 </div>
               )}
-              <Weather />
+              <Weather units={this.state.units} />
             </div>
           );
         }}

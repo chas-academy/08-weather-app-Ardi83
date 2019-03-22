@@ -129,7 +129,14 @@ class Weather extends Component {
                             <span>&#8457;</span>
                           )}
                         </span>
-                        <span>{data.wind.speed} m/s</span>
+                        <span>
+                          {data.wind.speed}{" "}
+                          {value.unit === "metric" ? (
+                            <span>m/s</span>
+                          ) : (
+                            <span>mil/h</span>
+                          )}
+                        </span>
                       </div>
                     </div>
                   );

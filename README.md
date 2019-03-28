@@ -1,3 +1,5 @@
+** PLEASE OPEN THE APP BY " HTTPS " 
+In apache server it was difficult for me to write htaccess code to redirect to index.html and also redirect to https so please do it manualy to open geoLocation , thanks 
 Link  =>  https://test.ardinasiri.me/
 - daily , hourly forecast
 - search by current location / City name
